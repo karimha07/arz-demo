@@ -14,6 +14,7 @@ use App\Policies\StockItemPolicy;
 use App\Policies\StockPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 
@@ -43,6 +44,8 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+//        Gate::before(function ($user, $ability, $hey) {
+//            return $user->hasRole('super-admin') ? true : null;
+//        });
     }
 }

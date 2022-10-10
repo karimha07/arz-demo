@@ -18,7 +18,7 @@ class StockPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -30,7 +30,7 @@ class StockPolicy
      */
     public function view(User $user, Stock $stock)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -41,7 +41,7 @@ class StockPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -53,7 +53,7 @@ class StockPolicy
      */
     public function update(User $user, Stock $stock)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -65,7 +65,7 @@ class StockPolicy
      */
     public function delete(User $user, Stock $stock)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -77,7 +77,7 @@ class StockPolicy
      */
     public function restore(User $user, Stock $stock)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 
     /**
@@ -89,6 +89,6 @@ class StockPolicy
      */
     public function forceDelete(User $user, Stock $stock)
     {
-        //
+        return $user->hasRole(['super-admin']);
     }
 }
