@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Stock;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -20,6 +21,7 @@ return new class extends Migration
             $table->enum('unit', ['gram', 'piece', 'box']);
             $table->tinyInteger('is_refrigerated');
             $table->integer('quantity');
+            $table->foreignIdFor(Stock::class)->nullable();
             $table->timestamps();
         });
     }

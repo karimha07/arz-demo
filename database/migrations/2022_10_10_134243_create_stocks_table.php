@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Department;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,7 +20,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->tinyInteger('is_active');
-            $table->foreignIdFor(Department::class);
+            $table->foreignIdFor(Department::class)->nullable();
+            $table->foreignIdFor(User::class)->nullable();
             $table->timestamps();
         });
     }

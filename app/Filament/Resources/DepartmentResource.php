@@ -6,6 +6,9 @@ use App\Filament\Resources\DepartmentResource\Pages;
 use App\Filament\Resources\DepartmentResource\RelationManagers;
 use App\Models\Department;
 use Filament\Forms;
+use Filament\Forms\Components\Checkbox;
+use Filament\Forms\Components\Fieldset;
+use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
@@ -28,6 +31,13 @@ class DepartmentResource extends Resource
             ->schema([
                 TextInput::make('name')->required(),
                 TextInput::make('slug')->required(),
+                Repeater::make('stocks')
+                    ->relationship()
+                    ->schema([
+                        TextInput::make('name')->required(),
+                        TextInput::make('slug')->required(),
+                        Checkbox::make('is_active'),
+                    ])
             ]);
     }
 
@@ -52,7 +62,7 @@ class DepartmentResource extends Resource
     public static function getRelations(): array
     {
         return [
-
+            RelationManagers\StocksRelationManager::class,
         ];
     }
 
