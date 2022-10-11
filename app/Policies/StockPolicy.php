@@ -18,8 +18,7 @@ class StockPolicy
      */
     public function viewAny(User $user)
     {
-//        return $user->isAuthorized(Stock::class, 'read');
-        return true;
+        return $user->isAuthorized(Stock::class, 'read');
     }
 
     /**
