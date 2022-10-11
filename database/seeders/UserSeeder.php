@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
@@ -16,14 +17,15 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        Artisan::call('make:filament-user superadmin superadmin@admin.com password');
-//        $user = User::create([
-//            'name' => 'superadmin',
-//            'email' => 'superadmin@arz.com',
-//            'password' => 'password'
-//        ]);
+//        Artisan::call('make:filament-user superadmin superadmin@admin.com password');
+        $user = User::create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@arz.com',
+            'password' => Hash::make('password'),
+            'email_verified_at' => now()
+        ]);
 
-//        Role::create(['name' => 'super-admin']);
-//        $user->assignRole('super-admin');
+        Role::create(['name' => 'super-admin']);
+        $user->assignRole('super-admin');
     }
 }
