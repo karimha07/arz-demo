@@ -33,7 +33,7 @@ class StockItemResource extends Resource
                         'Gram' => 'gram',
                         'Piece' => 'piece',
                         'Box' => 'box',
-                    ]),
+                    ])->default('box'),
                 Checkbox::make('is_refrigerated'),
                 TextInput::make('quantity')
                     ->numeric(),
@@ -49,7 +49,7 @@ class StockItemResource extends Resource
                 Tables\Columns\TextColumn::make('name'),
                 Tables\Columns\TextColumn::make('code'),
                 Tables\Columns\TextColumn::make('quantity'),
-                Tables\Columns\SelectColumn::make('unit'),
+                Tables\Columns\TextColumn::make('unit'),
                 Tables\Columns\IconColumn::make('is_refrigerated'),
                 Tables\Columns\IconColumn::make('is_refrigerated')->boolean()
             ])
