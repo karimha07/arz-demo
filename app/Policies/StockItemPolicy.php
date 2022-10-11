@@ -18,7 +18,7 @@ class StockItemPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(StockItem::class, 'read');
     }
 
     /**
@@ -30,7 +30,7 @@ class StockItemPolicy
      */
     public function view(User $user, StockItem $stockItem)
     {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(StockItem::class, 'read');
     }
 
     /**
@@ -41,7 +41,7 @@ class StockItemPolicy
      */
     public function create(User $user)
     {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(StockItem::class, 'create');
     }
 
     /**
@@ -53,7 +53,7 @@ class StockItemPolicy
      */
     public function update(User $user, StockItem $stockItem)
     {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(StockItem::class, 'update');
     }
 
     /**
@@ -65,30 +65,6 @@ class StockItemPolicy
      */
     public function delete(User $user, StockItem $stockItem)
     {
-        return $user->hasRole(['super-admin']);
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\StockItem  $stockItem
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, StockItem $stockItem)
-    {
-        return $user->hasRole(['super-admin']);
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\StockItem  $stockItem
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, StockItem $stockItem)
-    {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(StockItem::class, 'delete');
     }
 }

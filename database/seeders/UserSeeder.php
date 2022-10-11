@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Hash;
-use Spatie\Permission\Models\Role;
 
 class UserSeeder extends Seeder
 {
@@ -22,10 +22,8 @@ class UserSeeder extends Seeder
             'name' => 'superadmin',
             'email' => 'superadmin@arz.com',
             'password' => Hash::make('password'),
-            'email_verified_at' => now()
+            'email_verified_at' => now(),
+            'role_id' => Role::whereName('super-admin')->value('id')
         ]);
-
-        Role::create(['name' => 'super-admin']);
-        $user->assignRole('super-admin');
     }
 }

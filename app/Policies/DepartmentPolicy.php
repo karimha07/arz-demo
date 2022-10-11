@@ -18,7 +18,7 @@ class DepartmentPolicy
      */
     public function viewAny(User $user)
     {
-        return $user->hasRole(['super-admin', 'admin']);
+        return $user->isAuthorized(Department::class, 'read');
     }
 
     /**
@@ -30,7 +30,7 @@ class DepartmentPolicy
      */
     public function view(User $user, Department $department)
     {
-        return $user->hasRole(['super-admin', 'admin']);
+        return $user->isAuthorized(Department::class, 'read');
     }
 
     /**
@@ -41,7 +41,7 @@ class DepartmentPolicy
      */
     public function create(User $user)
     {
-        return $user->hasRole(['super-admin', 'admin']);
+        return $user->isAuthorized(Department::class, 'create');
     }
 
     /**
@@ -53,7 +53,7 @@ class DepartmentPolicy
      */
     public function update(User $user, Department $department)
     {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(Department::class, 'update');
     }
 
     /**
@@ -65,30 +65,6 @@ class DepartmentPolicy
      */
     public function delete(User $user, Department $department)
     {
-        return $user->hasRole(['super-admin']);
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Department $department)
-    {
-        return $user->hasRole(['super-admin']);
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Department  $department
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Department $department)
-    {
-        return $user->hasRole(['super-admin']);
+        return $user->isAuthorized(Department::class, 'delete');
     }
 }

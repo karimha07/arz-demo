@@ -4,10 +4,8 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\RoleResource\Pages;
 use App\Filament\Resources\RoleResource\RelationManagers;
-use App\Filament\Resources\RoleResource\RelationManagers\PermissionsRelationManager;
+use App\Models\Role;
 use Filament\Forms;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\TextInput;
 use Filament\Resources\Form;
 use Filament\Resources\Resource;
 use Filament\Resources\Table;
@@ -15,7 +13,6 @@ use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
-use Spatie\Permission\Models\Role;
 
 class RoleResource extends Resource
 {
@@ -27,21 +24,7 @@ class RoleResource extends Resource
     {
         return $form
             ->schema([
-                Grid::make(2)
-                    ->schema([
-                        TextInput::make('name')
-                            ->label(strval(__('filament-authentication::filament-authentication.field.name')))
-                            ->required(),
-                        TextInput::make('guard_name')
-                            ->label(strval(__('filament-authentication::filament-authentication.field.guard_name')))
-                            ->required()
-                            ->default(config('auth.defaults.guard')),
-                        // BelongsToManyMultiSelect::make('permissions')
-                        //     ->label(strval(__('filament-authentication::filament-authentication.field.permissions')))
-                        //     ->relationship('permissions', 'name')
-                        //     ->hidden()
-                        //     ->preload(config('filament-spatie-roles-permissions.preload_permissions'))
-                    ])
+                Forms\Components\TextInput::make('name')
             ]);
     }
 
@@ -53,10 +36,6 @@ class RoleResource extends Resource
                     ->label('ID')
                     ->searchable(),
                 TextColumn::make('name')
-                    ->label(strval(__('filament-authentication::filament-authentication.field.name')))
-                    ->searchable(),
-                TextColumn::make('guard_name')
-                    ->label(strval(__('filament-authentication::filament-authentication.field.guard_name')))
                     ->searchable(),
             ])
             ->filters([
@@ -73,7 +52,7 @@ class RoleResource extends Resource
     public static function getRelations(): array
     {
         return [
-            PermissionsRelationManager::class
+            //
         ];
     }
 

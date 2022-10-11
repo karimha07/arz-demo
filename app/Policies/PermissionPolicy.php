@@ -18,7 +18,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return $user->isAuthorized(Permission::class, 'read');
     }
 
     /**
@@ -30,7 +30,7 @@ class PermissionPolicy
      */
     public function view(User $user, Permission $permission)
     {
-        //
+        return $user->isAuthorized(Permission::class, 'read');
     }
 
     /**
@@ -41,7 +41,7 @@ class PermissionPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->isAuthorized(Permission::class, 'create');
     }
 
     /**
@@ -53,7 +53,7 @@ class PermissionPolicy
      */
     public function update(User $user, Permission $permission)
     {
-        //
+        return $user->isAuthorized(Permission::class, 'update');
     }
 
     /**
@@ -65,30 +65,6 @@ class PermissionPolicy
      */
     public function delete(User $user, Permission $permission)
     {
-        //
-    }
-
-    /**
-     * Determine whether the user can restore the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function restore(User $user, Permission $permission)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the model.
-     *
-     * @param  \App\Models\User  $user
-     * @param  \App\Models\Permission  $permission
-     * @return \Illuminate\Auth\Access\Response|bool
-     */
-    public function forceDelete(User $user, Permission $permission)
-    {
-        //
+        return $user->isAuthorized(Permission::class, 'delete');
     }
 }
